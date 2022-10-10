@@ -1,8 +1,112 @@
+import java.util.Scanner;
 
 public class Main {
+	static Scanner sc = new Scanner(System.in);
+
+	static void menuUno() {
+		System.out.println(" _____________________________");
+		System.out.println("| > 1. Registrar trabajo      |");
+		System.out.println("| > 2. Aumentar horas         |");
+		System.out.println("| > 3. Aumentar coste piezas  |");
+		System.out.println("| > 4. Finalizar trabajo      |");
+		System.out.println("| > 5. Muestra trabajo        |");
+		System.out.println("|_____________________________|");
+	}
+
+	static void menuDos() {
+		System.out.println("Indique el tipo de trabajo: ");
+		System.out.println("   _____________________________");
+		System.out.println("  | 1. Revision                 |");
+		System.out.println("  | 2. Reparacion Mecanica      |");
+		System.out.println("  | 3. Reparacion Chapa Pintura |");
+		System.out.println("  |_____________________________|");
+	}
+
+	static void gmensajeConsola(int codigo) {
+
+	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Garage gazMonkey = new Garage();;
+		int option = 0;
+		int var = 0;
+		int codigo = 0;
+
+		while (true) {
+			menuUno();
+			option = Integer.valueOf(sc.nextLine());
+
+			if (option == 1) {
+				menuDos();
+				var = Integer.valueOf(sc.nextLine());
+				System.out.println("Descripcion: ");
+				String desc = sc.nextLine();
+				codigo = gazMonkey.registrarTrabajo(var, desc);
+				if (codigo >= 0) {
+					System.out.println("Trabajo registrado con el identificador: " + codigo);
+				} else {
+					System.out.println("Opción equivocada elegida!");
+				}
+
+			}
+			if (option == 2) {
+				System.out.println("Introduzca el identificador del trabajo: ");
+				var = Integer.valueOf(sc.nextLine());
+				System.out.println("Número de horas:");
+				int horas = Integer.valueOf(sc.nextLine());
+				codigo = gazMonkey.aumentarHoras(var, horas);
+				if (codigo == 0) {
+					System.out.println("Aumento realizado!");
+				} else if (codigo == 1) {
+					System.out.println("Las horas indicadas son negativas");
+				} else if (codigo == 2) {
+					System.out.println("Este trabajo está terminado");
+				} else if (codigo == 3) {
+					System.out.println("El identificador es incorrecto");
+				}
+			}
+
+			if (option == 3) {
+				System.out.println("Introduzca el identificador del trabajo: ");
+				var = Integer.valueOf(sc.nextLine());
+				System.out.println("Coste de las piezas:");
+				int coste = Integer.valueOf(sc.nextLine());
+				codigo = gazMonkey.aumentarCostePiezas(var, coste);
+				if (codigo == 0) {
+					System.out.println("El precio se ha incrementado");
+				} else if (codigo == 1) {
+					System.out.println("El nuevo precio es negativo");
+				} else if (codigo == 2) {
+					System.out.println("Este trabajo está terminado");
+				} else if (codigo == 3) {
+					System.out.println("El identificador es incorrecto");
+				} else if (codigo == 4) {
+					System.out.println("El trabajo no es una reparación");
+				}
+			}
+
+			if (option == 4) {
+				System.out.println("Introduzca el identificador del trabajo: ");
+				var = Integer.valueOf(sc.nextLine());
+				codigo = gazMonkey.finalizarTrabajo(var);
+				if (codigo < 0) {
+					System.out.println("El identificador es incorrecto");
+				} else {
+					System.out.println("Trabajo completado con éxito");
+				}
+			}
+
+			if (option == 5) {
+				System.out.println("Introduzca el identificador del trabajo: ");
+				var = Integer.valueOf(sc.nextLine());
+				String trabajo = gazMonkey.muestraTrabajo(var);
+				if (trabajo.length() > 0) {
+					System.out.println(trabajo);
+				} else {
+					System.out.println("El identificador es incorrecto");
+				}
+			}
+		}
 
 	}
 
