@@ -27,9 +27,10 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Garage gazMonkey = new Garage();;
+		Garage gazMonkey = new Garage();
+		;
 		int option = 0;
-		int var = 0;
+		int value = 0;
 		int codigo = 0;
 
 		while (true) {
@@ -38,10 +39,10 @@ public class Main {
 
 			if (option == 1) {
 				menuDos();
-				var = Integer.valueOf(sc.nextLine());
+				value = Integer.valueOf(sc.nextLine());
 				System.out.println("Descripcion: ");
 				String desc = sc.nextLine();
-				codigo = gazMonkey.registrarTrabajo(var, desc);
+				codigo = gazMonkey.registrarTrabajo(value, desc);
 				if (codigo >= 0) {
 					System.out.println("Trabajo registrado con el identificador: " + codigo);
 				} else {
@@ -51,10 +52,10 @@ public class Main {
 			}
 			if (option == 2) {
 				System.out.println("Introduzca el identificador del trabajo: ");
-				var = Integer.valueOf(sc.nextLine());
+				value = Integer.valueOf(sc.nextLine());
 				System.out.println("Número de horas:");
 				int horas = Integer.valueOf(sc.nextLine());
-				codigo = gazMonkey.aumentarHoras(var, horas);
+				codigo = gazMonkey.aumentarHoras(value, horas);
 				if (codigo == 0) {
 					System.out.println("Aumento realizado!");
 				} else if (codigo == 1) {
@@ -68,10 +69,10 @@ public class Main {
 
 			if (option == 3) {
 				System.out.println("Introduzca el identificador del trabajo: ");
-				var = Integer.valueOf(sc.nextLine());
+				value = Integer.valueOf(sc.nextLine());
 				System.out.println("Coste de las piezas:");
 				int coste = Integer.valueOf(sc.nextLine());
-				codigo = gazMonkey.aumentarCostePiezas(var, coste);
+				codigo = gazMonkey.aumentarCostePiezas(value, coste);
 				if (codigo == 0) {
 					System.out.println("El precio se ha incrementado");
 				} else if (codigo == 1) {
@@ -87,8 +88,8 @@ public class Main {
 
 			if (option == 4) {
 				System.out.println("Introduzca el identificador del trabajo: ");
-				var = Integer.valueOf(sc.nextLine());
-				codigo = gazMonkey.finalizarTrabajo(var);
+				value = Integer.valueOf(sc.nextLine());
+				codigo = gazMonkey.finalizarTrabajo(value);
 				if (codigo < 0) {
 					System.out.println("El identificador es incorrecto");
 				} else {
@@ -98,8 +99,8 @@ public class Main {
 
 			if (option == 5) {
 				System.out.println("Introduzca el identificador del trabajo: ");
-				var = Integer.valueOf(sc.nextLine());
-				String trabajo = gazMonkey.muestraTrabajo(var);
+				value = Integer.valueOf(sc.nextLine());
+				String trabajo = gazMonkey.muestraTrabajo(value);
 				if (trabajo.length() > 0) {
 					System.out.println(trabajo);
 				} else {
