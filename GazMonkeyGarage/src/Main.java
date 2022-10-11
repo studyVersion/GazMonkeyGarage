@@ -46,7 +46,7 @@ public class Main {
 				if (codigo >= 0) {
 					System.out.println("Trabajo registrado con el identificador: " + codigo);
 				} else {
-					System.out.println("Opción equivocada elegida!");
+					System.out.println("Opcion equivocada elegida!");
 				}
 
 			}
@@ -61,7 +61,7 @@ public class Main {
 				} else if (codigo == 1) {
 					System.out.println("Las horas indicadas son negativas");
 				} else if (codigo == 2) {
-					System.out.println("Este trabajo está terminado");
+					System.out.println("Este trabajo esta terminado");
 				} else if (codigo == 3) {
 					System.out.println("El identificador es incorrecto");
 				}
@@ -78,7 +78,7 @@ public class Main {
 				} else if (codigo == 1) {
 					System.out.println("El nuevo precio es negativo");
 				} else if (codigo == 2) {
-					System.out.println("Este trabajo está terminado");
+					System.out.println("Este trabajo esta terminado");
 				} else if (codigo == 3) {
 					System.out.println("El identificador es incorrecto");
 				} else if (codigo == 4) {
@@ -93,7 +93,7 @@ public class Main {
 				if (codigo < 0) {
 					System.out.println("El identificador es incorrecto");
 				} else {
-					System.out.println("Trabajo completado con éxito");
+					System.out.println("Trabajo completado con exito");
 				}
 			}
 

@@ -18,11 +18,10 @@ public class ReparacionChapaPintura extends ReparacionMecanica {
 	@Override
 	public String toString() {
 		return " --------------------------------------\n"
-			 + "|  \n"
 			 + "| Trabajo ID: " + identificador + "\n"
 			 + "| Descripcion: " + descripcion + "\n" 
 			 + "| Precio: " + (getPrecio() + this.precioPiezas * 1.3) + "\n"
-			 + " ---------------------------------------\n";
+			 + " --------------------------------------\n";
 
 	}
 }

@@ -19,7 +19,6 @@ public class Trabajo {
 		this.finalizado = false;
 	}
 
-	
 
 	public int getIdentificador() {
 		return identificador;
@@ -73,10 +72,9 @@ public class Trabajo {
 	@Override
 	public String toString() {
 		return    " --------------------------------------\n"
-				+ "|  \n"
 				+ "| Trabajo ID: " + identificador +"\n"
 				+ "| Descripcion: " + descripcion +"\n"
 				+ "| Precio: " + precio +"\n"
-				+ " ---------------------------------------\n";
+				+ " --------------------------------------\n";
 	}
 }

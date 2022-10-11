@@ -43,20 +43,23 @@ public class Garage {
 		int codigo = 0;
 		if (horas > 0) {
 			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-				if (trabajo.getKey().equals(id)) {
-					if (trabajo.getValue().isFinalizado() == false) { // isfinalizado es por defecto false
+				if (trabajo.getValue().isFinalizado() == false) {
+					if (trabajo.getKey().equals(id)) { // isfinalizado es por defecto false
 						trabajo.getValue().aumentarHoras(horas);
 						codigo = 0;
 						break;
 					} else {
-						codigo = 2;
+						codigo = 3;
+						return codigo;
 					}
 				} else {
-					codigo = 3;
+					codigo = 2;
+					return codigo;
 				}
 			}
 		} else {
 			codigo = 1;
+			return codigo;
 		}
 
 		return codigo;
@@ -71,8 +74,8 @@ public class Garage {
 		int codigo = 0;
 		if (nuevoPrecio > 0) {
 			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-				if (trabajo.getKey().equals(id)) {
-					if (trabajo.getValue().isFinalizado() == false) {
+				if (trabajo.getValue().isFinalizado() == false) {
+					if (trabajo.getKey().equals(id)) {
 						if (trabajo.getValue() instanceof ReparacionMecanica) {
 							ReparacionMecanica rm = (ReparacionMecanica) trabajo.getValue();
 							rm.aumentarPrecioPiezas(nuevoPrecio);
@@ -87,11 +90,11 @@ public class Garage {
 							codigo = 4;
 						}
 					} else {
-						codigo = 2;
+						codigo = 3;
 					}
 
 				} else {
-					codigo = 3;
+					codigo = 2;
 				}
 			}
 		} else {
@@ -116,7 +119,6 @@ public class Garage {
 
 	public String muestraTrabajo(int id) {
 		String value = "";
-		System.out.println(listaTrabajos.toString());
 		for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
 			if (trabajo.getKey().equals(id)) {
 				value = trabajo.getValue().toString();

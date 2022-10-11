@@ -16,11 +16,10 @@ public class ReparacionMecanica extends Trabajo {
 	@Override
 	public String toString() {
 		return " --------------------------------------\n"
-			 + "|  \n"
 			 + "| Trabajo ID: " + identificador + "\n"
 			 + "| Descripcion: " + descripcion + "\n" 
 			 + "| Precio: " + (getPrecio() + this.precioPiezas * 1.1) + "\n"
-			 + " ---------------------------------------\n";
+			 + " --------------------------------------\n";
 
 	}
 }
