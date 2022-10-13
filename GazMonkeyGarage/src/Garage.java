@@ -7,9 +7,9 @@ public class Garage {
 	Map<Integer, Trabajo> listaTrabajos = new HashMap<>();
 
 	public Garage() {
-		super();
+		
 		this.listaTrabajos = new HashMap<>();
-		;
+		
 	}
 
 	// los tipos : 1 parra revision ; 2 parra reparacion mecanica;
@@ -43,23 +43,23 @@ public class Garage {
 		int codigo = 0;
 		if (horas > 0) {
 			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-				if (trabajo.getValue().isFinalizado() == false) {
-					if (trabajo.getKey().equals(id)) { // isfinalizado es por defecto false
+				if (trabajo.getValue().isFinalizado() == false) {// isfinalizado es por defecto false
+					if (trabajo.getKey().equals(id)) { 
 						trabajo.getValue().aumentarHoras(horas);
 						codigo = 0;
 						break;
 					} else {
 						codigo = 3;
-						return codigo;
+						
 					}
 				} else {
 					codigo = 2;
-					return codigo;
+					
 				}
 			}
 		} else {
 			codigo = 1;
-			return codigo;
+			
 		}
 
 		return codigo;
