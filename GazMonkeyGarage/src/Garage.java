@@ -73,6 +73,12 @@ public class Garage {
 	public int aumentarCostePiezas(int id, double nuevoPrecio) {
 		int codigo = 0;
 		if (nuevoPrecio > 0) {
+			
+			boolean existe = listaTrabajos.containsKey(id);
+			if (!existe) {
+				
+			}
+			
 			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
 				if (trabajo.getValue().isFinalizado() == false) {
 					if (trabajo.getKey().equals(id)) {

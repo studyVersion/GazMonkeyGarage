@@ -59,7 +59,7 @@ public class Main {
 				if (codigo == 0) {
 					System.out.println("Aumento realizado!");
 				} else if (codigo == 1) {
-					System.out.println("Las horas indicadas son negativas");
+					System.out.println("Las horas1adas son negativas");
 				} else if (codigo == 2) {
 					System.out.println("Este trabajo esta terminado");
 				} else if (codigo == 3) {

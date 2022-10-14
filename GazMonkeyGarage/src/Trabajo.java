@@ -1,5 +1,5 @@
 
-public class Trabajo {
+public abstract class Trabajo { ///////////////////
 
 	protected int identificador;
 	protected String descripcion;
@@ -7,7 +7,7 @@ public class Trabajo {
     protected final int fijo;
 	protected double precio;
 	protected boolean finalizado;
-	private static int count = 0;
+	private static int count = 1;
 
 	public Trabajo(String descripcion) {
 
@@ -77,4 +77,6 @@ public class Trabajo {
 				+ "| Precio: " + precio +"\n"
 				+ " --------------------------------------\n";
 	}
+	
+	public abstract void  obtenerCoste();
 }

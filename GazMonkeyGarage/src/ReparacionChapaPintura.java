@@ -15,6 +15,10 @@ public class ReparacionChapaPintura extends ReparacionMecanica {
 		this.precioPiezas =+ nuevoPrecio;
 	}
 	
+	public obtenerCoste() {
+		this.precioPiezas * 1.3)
+	}
+	
 	@Override
 	public String toString() {
 		return " --------------------------------------\n"

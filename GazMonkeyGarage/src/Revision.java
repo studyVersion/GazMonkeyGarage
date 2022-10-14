@@ -16,4 +16,10 @@ public class Revision extends Trabajo {
 	         + " --------------------------------------\n";
 
 	}
+
+	@Override
+	public void obtenerCoste() {
+		// TODO Auto-generated method stub
+		
+	}
 }
