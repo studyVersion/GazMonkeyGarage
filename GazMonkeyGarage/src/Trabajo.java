@@ -1,10 +1,10 @@
 
-public abstract class Trabajo { ///////////////////
+public abstract class Trabajo {
 
 	protected int identificador;
 	protected String descripcion;
-    protected int horasEmpleadas;
-    protected final int fijo;
+	protected int horasEmpleadas;
+	protected final int fijo;
 	protected double precio;
 	protected boolean finalizado;
 	private static int count = 1;
@@ -18,7 +18,6 @@ public abstract class Trabajo { ///////////////////
 		this.precio = 0;
 		this.finalizado = false;
 	}
-
 
 	public int getIdentificador() {
 		return identificador;
@@ -55,7 +54,6 @@ public abstract class Trabajo { ///////////////////
 		this.precio = precio;
 	}
 
-	
 	public boolean isFinalizado() {
 		return finalizado;
 	}
@@ -68,15 +66,23 @@ public abstract class Trabajo { ///////////////////
 
 		this.horasEmpleadas += horas;
 	}
-	
-	@Override
-	public String toString() {
-		return    " --------------------------------------\n"
-				+ "| Trabajo ID: " + identificador +"\n"
-				+ "| Descripcion: " + descripcion +"\n"
-				+ "| Precio: " + precio +"\n"
-				+ " --------------------------------------\n";
+    
+	public abstract double obtenerCoste();
+
+	// obtener el estado
+	public String estado() {
+		String estado = "";
+		enum Estado {
+			Completado, EnProceso
+		}
+
+		if (finalizado) {
+			estado = Estado.Completado.toString();
+		} else {
+			estado = Estado.EnProceso.toString();
+		}
+		return estado;
+
 	}
-	
-	public abstract void  obtenerCoste();
+
 }

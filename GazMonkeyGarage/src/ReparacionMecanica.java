@@ -13,13 +13,21 @@ public class ReparacionMecanica extends Trabajo {
 		this.precioPiezas =+ nuevoPrecio;
 	}
 
+	
+
+	@Override
+	public double obtenerCoste() {
+		precio = getPrecio() + this.precioPiezas * 1.1;
+		return precio;
+	}
+	
 	@Override
 	public String toString() {
-		return " --------------------------------------\n"
-			 + "| Trabajo ID: " + identificador + "\n"
-			 + "| Descripcion: " + descripcion + "\n" 
-			 + "| Precio: " + (getPrecio() + this.precioPiezas * 1.1) + "\n"
-			 + " --------------------------------------\n";
-
+		return    " --------------------------------------\n"
+				+ "| Trabajo ID: " + identificador +"\n"
+				+ "| Descripcion: " + descripcion +"\n"
+				+ "| Precio: " + obtenerCoste() +"\n"
+                + "| Estado: "+ estado()+ "\n"
+				+ " --------------------------------------\n";
 	}
 }

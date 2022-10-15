@@ -7,13 +7,15 @@ public class Garage {
 	Map<Integer, Trabajo> listaTrabajos = new HashMap<>();
 
 	public Garage() {
-		
+
 		this.listaTrabajos = new HashMap<>();
-		
+
 	}
 
-	// los tipos : 1 parra revision ; 2 parra reparacion mecanica;
-	// 3 parra reparacion
+	/*
+	 * los tipos : 1 parra revision ; 2 parra reparacion mecanica; 3 parra
+	 * reparacion
+	 */
 	public int registrarTrabajo(int tipo, String descripcion) {
 		int codigo = -1;
 
@@ -37,29 +39,41 @@ public class Garage {
 
 	/*
 	 * Si el código = 0 las horas se incrementan, si 1 las horas son negativas, si 2
-	 * el trabajo está terminado, si 3 la ID es incorrecta.
+	 * el trabajo está terminado, si 3 la ID es incorrecta, si 4 es una revision
 	 */
 	public int aumentarHoras(int id, int horas) {
 		int codigo = 0;
+
 		if (horas > 0) {
-			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-				if (trabajo.getValue().isFinalizado() == false) {// isfinalizado es por defecto false
-					if (trabajo.getKey().equals(id)) { 
-						trabajo.getValue().aumentarHoras(horas);
-						codigo = 0;
-						break;
-					} else {
-						codigo = 3;
-						
-					}
-				} else {
+			boolean existeTrabajo = listaTrabajos.containsKey(id);
+
+			if (!existeTrabajo) {
+				codigo = 3;
+
+			} else if (existeTrabajo) {
+				boolean finalizado = listaTrabajos.get(id).isFinalizado();
+
+				if (finalizado) {
 					codigo = 2;
-					
+				} else {
+					for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
+
+						if (trabajo.getKey().equals(id)) {
+							if (trabajo.getValue() instanceof Revision) {
+								codigo = 4;
+								break;
+							} else {
+								trabajo.getValue().aumentarHoras(horas);
+								codigo = 0;
+								break;
+							}
+						}
+					}
 				}
 			}
 		} else {
 			codigo = 1;
-			
+
 		}
 
 		return codigo;
@@ -72,35 +86,39 @@ public class Garage {
 	 */
 	public int aumentarCostePiezas(int id, double nuevoPrecio) {
 		int codigo = 0;
+
 		if (nuevoPrecio > 0) {
-			
-			boolean existe = listaTrabajos.containsKey(id);
-			if (!existe) {
-				
-			}
-			
-			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-				if (trabajo.getValue().isFinalizado() == false) {
-					if (trabajo.getKey().equals(id)) {
-						if (trabajo.getValue() instanceof ReparacionMecanica) {
-							ReparacionMecanica rm = (ReparacionMecanica) trabajo.getValue();
-							rm.aumentarPrecioPiezas(nuevoPrecio);
-							codigo = 0;
-							break;
-						} else if (trabajo.getValue() instanceof ReparacionChapaPintura) {
-							ReparacionChapaPintura rcp = (ReparacionChapaPintura) trabajo.getValue();
-							rcp.aumentarPrecioPiezas(nuevoPrecio);
-							codigo = 0;
-							break;
-						} else {
-							codigo = 4;
-						}
-					} else {
-						codigo = 3;
-					}
+
+			boolean existeTrabajo = listaTrabajos.containsKey(id);
+			if (!existeTrabajo) {
+				codigo = 3;
+
+			} else if (existeTrabajo) {
+				boolean finalizado = listaTrabajos.get(id).isFinalizado();
+
+				if (finalizado) {
+					codigo = 2;
 
 				} else {
-					codigo = 2;
+					for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
+
+						if (trabajo.getKey().equals(id)) {
+							if (trabajo.getValue() instanceof ReparacionMecanica) {
+								ReparacionMecanica rm = (ReparacionMecanica) trabajo.getValue();
+								rm.aumentarPrecioPiezas(nuevoPrecio);
+								codigo = 0;
+								break;
+							} else if (trabajo.getValue() instanceof ReparacionChapaPintura) {
+								ReparacionChapaPintura rcp = (ReparacionChapaPintura) trabajo.getValue();
+								rcp.aumentarPrecioPiezas(nuevoPrecio);
+								codigo = 0;
+								break;
+							} else {
+								codigo = 4;
+							}
+						}
+					}
+
 				}
 			}
 		} else {
@@ -109,14 +127,31 @@ public class Garage {
 		return codigo;
 
 	}// aumentarCostePiezas
-
+    
+	
+	/*
+	 * Si el codigo = -1 el trabajo no existe, si -2 el trabajo ya esta terminado,
+	 * 
+	 * */
 	public int finalizarTrabajo(int id) {
-		int codigo = -1;
-		for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-			if (trabajo.getKey().equals(id)) {
-				trabajo.getValue().finalizarTrabajo();
-				codigo = 0;
+		int codigo = 0;
+		boolean existeTrabajo = listaTrabajos.containsKey(id);
 
+		if (!existeTrabajo) {
+			codigo = -1;
+		} else if (existeTrabajo) {
+			
+			boolean finalizado = listaTrabajos.get(id).isFinalizado();
+			if (finalizado) {
+				codigo = -2;
+
+			} else {
+				for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
+					if (trabajo.getKey().equals(id)) {
+						trabajo.getValue().finalizarTrabajo();
+						codigo = 0;
+					}
+				}
 			}
 		}
 		return codigo;
@@ -125,9 +160,15 @@ public class Garage {
 
 	public String muestraTrabajo(int id) {
 		String value = "";
-		for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
-			if (trabajo.getKey().equals(id)) {
-				value = trabajo.getValue().toString();
+		boolean existeTrabajo = listaTrabajos.containsKey(id);
+
+		if (!existeTrabajo) {
+			value = "";
+		} else {
+			for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
+				if (trabajo.getKey().equals(id)) {
+					value = trabajo.getValue().toString();
+				}
 			}
 		}
 		return value;

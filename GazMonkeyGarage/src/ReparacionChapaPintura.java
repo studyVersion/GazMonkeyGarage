@@ -15,17 +15,19 @@ public class ReparacionChapaPintura extends ReparacionMecanica {
 		this.precioPiezas =+ nuevoPrecio;
 	}
 	
-	public obtenerCoste() {
-		this.precioPiezas * 1.3)
+	@Override
+	public double obtenerCoste() {
+		precio = getPrecio() + this.precioPiezas * 1.3;
+		return precio;
 	}
 	
 	@Override
 	public String toString() {
-		return " --------------------------------------\n"
-			 + "| Trabajo ID: " + identificador + "\n"
-			 + "| Descripcion: " + descripcion + "\n" 
-			 + "| Precio: " + (getPrecio() + this.precioPiezas * 1.3) + "\n"
-			 + " --------------------------------------\n";
-
+		return    " --------------------------------------\n"
+				+ "| Trabajo ID: " + identificador +"\n"
+				+ "| Descripcion: " + descripcion +"\n"
+				+ "| Precio: " + obtenerCoste() +"\n"
+                + "| Estado: "+ estado()+ "\n"
+				+ " --------------------------------------\n";
 	}
 }

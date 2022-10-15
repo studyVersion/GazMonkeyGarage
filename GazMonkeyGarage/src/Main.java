@@ -64,6 +64,8 @@ public class Main {
 					System.out.println("Este trabajo esta terminado");
 				} else if (codigo == 3) {
 					System.out.println("El identificador es incorrecto");
+				} else if (codigo == 4) {
+					System.out.println("No hay aumento de horas para las revisiones");
 				}
 			}
 
@@ -82,7 +84,7 @@ public class Main {
 				} else if (codigo == 3) {
 					System.out.println("El identificador es incorrecto");
 				} else if (codigo == 4) {
-					System.out.println("El trabajo no es una reparación");
+					System.out.println("El trabajo no es una reparacion");
 				}
 			}
 
@@ -90,8 +92,10 @@ public class Main {
 				System.out.println("Introduzca el identificador del trabajo: ");
 				value = Integer.valueOf(sc.nextLine());
 				codigo = gazMonkey.finalizarTrabajo(value);
-				if (codigo < 0) {
+				if (codigo == -1) {
 					System.out.println("El identificador es incorrecto");
+				} else if (codigo == -2) {
+					System.out.println("Este trabajo ya esta terminado");
 				} else {
 					System.out.println("Trabajo completado con exito");
 				}

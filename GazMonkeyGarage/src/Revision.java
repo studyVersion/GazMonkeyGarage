@@ -8,18 +8,23 @@ public class Revision extends Trabajo {
 	}
     
 	@Override
-	public String toString() {
-		return " --------------------------------------\n"
-			 + "| Trabajo ID: " + identificador + "\n"
-			 + "| Descripcion: " + descripcion + "\n" 
-	         + "| Precio: " + (fijo + 20)  + "\n"
-	         + " --------------------------------------\n";
-
+	public double obtenerCoste() {
+		precio = fijo + 20;
+		return precio;
+	
 	}
-
+	
+	
 	@Override
-	public void obtenerCoste() {
-		// TODO Auto-generated method stub
-		
+	public String toString() {
+		return    " --------------------------------------\n"
+				+ "| Trabajo ID: " + identificador +"\n"
+				+ "| Descripcion: " + descripcion +"\n"
+				+ "| Precio: " + obtenerCoste() +"\n"
+                + "| Estado: "+ estado()+ "\n"
+				+ " --------------------------------------\n";
 	}
+
+	
 }
+
