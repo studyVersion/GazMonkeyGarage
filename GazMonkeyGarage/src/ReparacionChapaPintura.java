@@ -1,23 +1,16 @@
 
-public class ReparacionChapaPintura extends ReparacionMecanica {
+public class ReparacionChapaPintura extends Reparacion {
 
-	private double precioPiezas;
-
+    private final double fijo = 1.3;
 	
 	public ReparacionChapaPintura(String descripcion) {
 		super(descripcion);
-		this.precioPiezas = 0;		
 	}
     
-	@Override
-	public void aumentarPrecioPiezas(double nuevoPrecio) {
-
-		this.precioPiezas =+ nuevoPrecio;
-	}
 	
 	@Override
 	public double obtenerCoste() {
-		precio = getPrecio() + this.precioPiezas * 1.3;
+		precio = getPrecio() + this.precioPiezas * fijo;
 		return precio;
 	}
 	

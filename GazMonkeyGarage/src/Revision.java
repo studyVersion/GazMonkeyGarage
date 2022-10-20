@@ -1,6 +1,7 @@
 
 public class Revision extends Trabajo {
 	
+	private final int fijo = 20;
 	
 	public Revision(String descripcion) {
 		super(descripcion);
@@ -9,7 +10,7 @@ public class Revision extends Trabajo {
     
 	@Override
 	public double obtenerCoste() {
-		precio = fijo + 20;
+		precio = getPrecio() + fijo;
 		return precio;
 	
 	}

@@ -59,14 +59,10 @@ public class Garage {
 					for (Entry<Integer, Trabajo> trabajo : listaTrabajos.entrySet()) {
 
 						if (trabajo.getKey().equals(id)) {
-							if (trabajo.getValue() instanceof Revision) {
-								codigo = 4;
-								break;
-							} else {
-								trabajo.getValue().aumentarHoras(horas);
-								codigo = 0;
-								break;
-							}
+							trabajo.getValue().aumentarHoras(horas);
+							codigo = 0;
+							break;
+							// }
 						}
 					}
 				}
@@ -127,12 +123,11 @@ public class Garage {
 		return codigo;
 
 	}// aumentarCostePiezas
-    
-	
+
 	/*
 	 * Si el codigo = -1 el trabajo no existe, si -2 el trabajo ya esta terminado,
 	 * 
-	 * */
+	 */
 	public int finalizarTrabajo(int id) {
 		int codigo = 0;
 		boolean existeTrabajo = listaTrabajos.containsKey(id);
@@ -140,7 +135,7 @@ public class Garage {
 		if (!existeTrabajo) {
 			codigo = -1;
 		} else if (existeTrabajo) {
-			
+
 			boolean finalizado = listaTrabajos.get(id).isFinalizado();
 			if (finalizado) {
 				codigo = -2;
